@@ -2,7 +2,7 @@
 x <- rnorm(100, mean = 0, sd = 1)
 
 ## estimate mean
-mean(x)
+median(x)
 
 ## estimate SD
-sd(x)
+var(x)
