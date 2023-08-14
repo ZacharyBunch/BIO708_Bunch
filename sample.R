@@ -6,5 +6,3 @@ median(x)
 
 ## estimate SD
 var(x)
-
-#test
