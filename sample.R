@@ -6,3 +6,9 @@ median(x)
 
 ## estimate SD
 var(x)
+
+##Changing stuff
+
+x <- c(1,4,8)
+
+print(x)
