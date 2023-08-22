@@ -12,3 +12,10 @@ var(x)
 x <- c(1,4,8)
 
 print(x)
+a <-c("a","b","c")
+
+a <-factor(c("a","b","c"))
+
+a
+
+as.numeric(a)
