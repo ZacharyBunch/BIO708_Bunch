@@ -170,3 +170,9 @@ df0[,1] # access column #1
 df0[1,] # access row #1
 df0[c(2,4),] # access row #2 and 4
 df0[c(2,4),] # access row #2 and 4
+
+
+
+# exercise ----------------------------------------------------------------
+
+
