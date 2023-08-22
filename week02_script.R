@@ -198,3 +198,23 @@ vector_20 <- rep(1:20,1)
 
 vector_20
 
+
+##b) Create three character vectors with length 3, 6 and 20, respectively. Each vector must be created using different functions in R.
+
+#1
+
+cvector_3 <- c("a","b","c")
+
+cvector_3
+
+#2 
+
+cvector_6 <- character(6)
+
+cvector_6
+
+#3
+
+cvector_20 <- rep(c("hello","its me"),10)
+
+cvector_20
