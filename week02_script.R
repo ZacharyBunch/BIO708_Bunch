@@ -218,3 +218,16 @@ cvector_6
 cvector_20 <- rep(c("hello","its me"),10)
 
 cvector_20
+
+##c) Copy the following script to your R script and perform the following analysis:
+
+set.seed(1)
+x <- rnorm(100)
+
+# Identify element IDs of x that are greater than 2.0
+
+x_over_2 <- which(x > 2.0)
+
+# Identify element values of x that are greater than 2.0
+
+x_over_2_2 <- x[x > 2.0]
