@@ -175,7 +175,26 @@ df0[c(2,4),] # access row #2 and 4
 
 # exercise ----------------------------------------------------------------
 
-#Vector 
+####Vector #### 
+
+##a) Create three numeric vectors with length 3, 6 and 20, respectively. Each vector must be created using different functions in R.
 
 
+#1
+
+vector_3 <- c(1, 2, 3)
+
+vector_3
+
+#2
+
+vector_6 <- seq(1,6)
+
+vector_6
+
+#3
+
+vector_20 <- rep(1:20,1)
+
+vector_20
 
