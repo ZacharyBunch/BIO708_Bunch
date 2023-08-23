@@ -231,3 +231,36 @@ x_over_2 <- which(x > 2.0)
 # Identify element values of x that are greater than 2.0
 
 x_over_2_2 <- x[x > 2.0]
+
+#### Matrix #####
+
+## a) Create a numeric matrix with 4 rows and 4 columns. Each column must contain identical elements.
+
+matrix <- matrix(1:4, ncol = 4, nrow = 4)
+
+##b) Create a numeric matrix with 4 rows and 4 columns. Each row must contain identical elements.
+
+matrix_1 <- matrix(1:4, ncol=4, nrow = 4, byrow = TRUE)
+
+##c) Create a character matrix with 4 rows and 4 columns. Each column must contain identical elements.
+
+matrix_2 <- matrix(c("A","B","C","D"), nrow = 4, ncol = 4)
+
+##d) Create a character matrix with 4 rows and 4 columns. Each row must contain identical elements.
+
+matrix_3 <- matrix(c("A","B","C","D"), nrow = 4, ncol = 4, byrow= TRUE)
+
+##e) Copy the following script to your R script and perform the following analysis:
+
+set.seed(1)
+x <- matrix(rnorm(100), nrow = 10, ncol = 10)
+
+#Identify element IDs of x that are greater than 2.0 (specify row and column IDs)
+
+greater_than_2 <- which(x > 2.0, arr.ind = TRUE)
+
+#Identify element IDs of x that are greater than 2.0 (specify row and column IDs)
+
+values_greater_than_2 <- x[x > 2.0]
+
+mean_of_values_greater_than_2 <- mean(values_greater_than_2)
