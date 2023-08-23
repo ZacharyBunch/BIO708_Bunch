@@ -264,3 +264,44 @@ greater_than_2 <- which(x > 2.0, arr.ind = TRUE)
 values_greater_than_2 <- x[x > 2.0]
 
 mean_of_values_greater_than_2 <- mean(values_greater_than_2)
+
+
+#### Data Frame ####
+
+#a) Create a data frame of 3 variables with 10 elements (name variables as x, y and z. x must be character while y and z must be numeric.
+
+
+data_frame <- data.frame(x = rep("char", 10),y = 1:10, z = 11:20)
+
+#b) Check the data structure (higher-level) of x, y and z
+
+class(data_frame)
+
+x_class <- class(data_frame$x)
+y_class <- class(data_frame$y)
+z_class <- class(data_frame$z)
+
+#c) Copy the following script to your R script and perform the following analysis:
+
+#Calculate the means of temperature and abundance for states VA and NC separately.
+
+set.seed(1)
+x <- rnorm(100, mean = 10, sd = 3)
+y <- rpois(100, lambda = 10)
+z <- rep(c("VA", "NC"), 50)
+df0 <- data.frame(temperature = x, abundance = y, state = z)
+
+
+mean_temperature_VA <- mean(df0$temperature[df0$state == "VA"])
+mean_temperature_NC <- mean(df0$temperature[df0$state == "NC"])
+
+mean_abundance_VA <- mean(df0$abundance[df0$state == "VA"])
+mean_abundance_NC <- mean(df0$abundance[df0$state == "NC"])
+
+
+
+mean_temperature_VA 
+mean_temperature_NC 
+
+mean_abundance_VA
+mean_abundance_NC
