@@ -428,3 +428,67 @@ df2 <- tibble(Species = c("A", "B", "C"),
 left_join(x = df1,
           y = df2,
           by = "Species")
+
+
+
+# Exercise tidyverse  --------------------------------------------------------------
+
+library(ggplot2movies)
+data('movies')
+library(tidyverse)
+
+
+#1a
+ 
+data <- movies
+
+data1 <- data  %>% mutate(new_var_name = rating - mean(rating))
+
+#1b
+
+data2 <- data %>%  filter(year >= 2000)
+
+#1c
+
+data3 <- data %>% select(title, year, budget, length, rating, votes)
+
+#1d
+
+data4 <- data %>%  rename(length_in_min = length)
+
+#### Tidyverse Exercise 2 ####
+
+data5 <- data %>% 
+  group_by(year) %>% 
+  summarize(avg_budget = mean(budget,na.rm = TRUE)) 
+
+
+#### Tidvverse Exercise 3 ####
+
+
+dat = tibble(id = 1:10,
+             x = rnorm(10),
+             y = rnorm(10))
+
+dat1 <- dat %>%
+  pivot_longer(cols = c(x, y), names_to = "variable", values_to = "value")
+
+
+#### Tidyverse Exercise 4 ####
+
+#Now put several actions together in one set of piped operations.
+
+#Filter movies released after 1990
+#select the same variables as before but also the mpaa, Action, and Drama variables
+#group by mpaa and (your choice) Action or Drama
+#get the average rating
+# It should spit out something like the following:
+
+
+big_data <- data %>%  filter(year > 1990) %>% 
+  select(title, year, budget, length, rating, votes, mpaa, Action, Drama) %>% 
+  group_by(mpaa, Drama) %>% 
+  summarize(avg_rating = mean(rating,na.rm = TRUE)) 
+
+
+big_data
