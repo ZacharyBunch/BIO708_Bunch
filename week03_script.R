@@ -23,3 +23,14 @@ iris %>%
              y = Sepal.Width,
              color = Species)) +
   geom_point()
+
+# sample data
+df0 <- tibble(x = rep(1:50, 3),
+              y = x * 2)
+
+# basic plot
+df0 %>% 
+  ggplot(aes(x = x,
+             y = y)) +
+  geom_line()
+
