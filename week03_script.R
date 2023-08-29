@@ -34,6 +34,8 @@ df0 %>%
              y = y)) +
   geom_line()
 
+print(df0)
+
 # basic plot; bins = 30 by default
 iris %>% 
   ggplot(aes(x = Sepal.Length)) +
