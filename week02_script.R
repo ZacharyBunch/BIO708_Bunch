@@ -492,3 +492,6 @@ big_data <- data %>%  filter(year > 1990) %>%
 
 
 big_data
+
+
+
