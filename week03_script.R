@@ -87,4 +87,6 @@ iris %>%
   mutate(site = sample(letters[1:2], nrow(.), replace = TRUE )) %>% 
   ggplot(aes(x= Sepal.Length, y = Sepal.Width)) +
   geom_point() +
-  facet_grid(rows = vars(Species), cols = vars(site))
+  facet_grid(rows = vars(Species), cols = vars(site)) +
+  theme_bw() +
+  theme(panel.grid = element_blank())
