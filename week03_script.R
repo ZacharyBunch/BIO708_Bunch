@@ -188,3 +188,5 @@ df_na <- df0 %>%
   mutate(x1 = ifelse(x1 < 0, NA, x1))
 
 df_no_na <- df_na %>% drop_na(x1)
+
+df_no_na
