@@ -1,5 +1,5 @@
 #' ---
-#' title: "Report week2"
+#' title: "Report week4"
 #' output: html_document
 #' date: "2023-9-23"
 #' author: Zachary Bunch
@@ -55,3 +55,77 @@ print(med_x)
 y <- sort(y) # sort y from small to large
 med_y <- y[(length(y) + 1) / 2]
 print(med_y)
+
+
+print(median(x))
+
+print(median(y))
+
+
+# variation  ------------------------------------------------------------
+
+# for x
+sqd_x <- (x - mean(x))^2 # squared deviance
+sum_sqd_x <- sum(sqd_x)
+var_x <- sum_sqd_x / length(x)
+print(var_x)
+
+# for y
+var_y <- sum((y - mean(y))^2) / length(y)
+print(var_y)
+
+
+# Standard deviation  -----------------------------------------------------
+
+# for x
+sd_x <- sqrt(var_x) # sqrt(): square root
+print(sd_x)
+
+# for y
+sd_y <- sqrt(var_y)
+print(sd_y)
+
+# coeffient of variation 
+
+# for x
+cv_x <- sd_x / mean(x)
+print(cv_x)
+
+# for y
+cv_y <- sd_y / mean(y)
+print(cv_y)
+
+# IQR
+
+# for x
+x_l <- quantile(x, 0.25) # quantile(): return quantile values, 25 percentile
+x_h <- quantile(x, 0.75) # quantile(): return quantile values, 75 percentile
+iqr_x <- abs(x_l - x_h) # abs(): absolute value
+print(iqr_x)
+
+
+# for y
+y_q <- quantile(y, c(0.25, 0.75)) # return as a vector
+iqr_y <- abs(y_q[1] - y_q[2]) # y_q[1] = 25 percentile; y_q[2] = 75 percentile
+print(iqr_y)
+
+# MAD
+
+# for x
+ad_x <- abs(x - median(x))
+mad_x <- median(ad_x)
+print(mad_x)
+
+# for y
+mad_y <- median(abs(y - median(y)))
+print(mad_y)
+
+# MAD/ MEDIAN
+
+# for x
+mm_x <- mad_x / median(x)
+print(mm_x)
+
+# for y
+mm_y <- mad_y / median(y)
+print(mm_y)
