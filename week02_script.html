@@ -350,6 +350,713 @@ x</code></pre>
 ## [5,]   1   3
 ## [6,]   2   3
 ## [7,]   3   3</code></pre>
+<pre class="r"><code># data frame --------------------------------------------------------------
+
+# Create data frame
+x &lt;- c(&quot;Pristine&quot;, &quot;Pristine&quot;, &quot;Disturbed&quot;, &quot;Disturbed&quot;, &quot;Pristine&quot;) # Lake type
+y &lt;- c(1.2, 2.2, 10.9, 50.0, 3.0) # TSS: total suspended solids (mg/L)
+df0 &lt;- data.frame(LakeType = x, TSS = y) # x is named as &quot;LakeType&quot; while y is named as &quot;TSS&quot;
+df0</code></pre>
+<pre><code>##    LakeType  TSS
+## 1  Pristine  1.2
+## 2  Pristine  2.2
+## 3 Disturbed 10.9
+## 4 Disturbed 50.0
+## 5  Pristine  3.0</code></pre>
+<pre class="r"><code>colnames(df0) # call column names</code></pre>
+<pre><code>## [1] &quot;LakeType&quot; &quot;TSS&quot;</code></pre>
+<pre class="r"><code>df0$LakeType # access LakeType</code></pre>
+<pre><code>## [1] &quot;Pristine&quot;  &quot;Pristine&quot;  &quot;Disturbed&quot; &quot;Disturbed&quot; &quot;Pristine&quot;</code></pre>
+<pre class="r"><code>df0$TSS # access TSS</code></pre>
+<pre><code>## [1]  1.2  2.2 10.9 50.0  3.0</code></pre>
+<pre class="r"><code>df0[,1] # access column #1</code></pre>
+<pre><code>## [1] &quot;Pristine&quot;  &quot;Pristine&quot;  &quot;Disturbed&quot; &quot;Disturbed&quot; &quot;Pristine&quot;</code></pre>
+<pre class="r"><code>df0[1,] # access row #1</code></pre>
+<pre><code>##   LakeType TSS
+## 1 Pristine 1.2</code></pre>
+<pre class="r"><code>df0[c(2,4),] # access row #2 and 4</code></pre>
+<pre><code>##    LakeType  TSS
+## 2  Pristine  2.2
+## 4 Disturbed 50.0</code></pre>
+<pre class="r"><code>df0[c(2,4),] # access row #2 and 4</code></pre>
+<pre><code>##    LakeType  TSS
+## 2  Pristine  2.2
+## 4 Disturbed 50.0</code></pre>
+<pre class="r"><code># exercise ----------------------------------------------------------------
+
+####Vector #### 
+
+##a) Create three numeric vectors with length 3, 6 and 20, respectively. Each vector must be created using different functions in R.
+
+
+#1
+
+vector_3 &lt;- c(1, 2, 3)
+
+vector_3</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>#2
+
+vector_6 &lt;- seq(1,6)
+
+vector_6</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<pre class="r"><code>#3
+
+vector_20 &lt;- rep(1:20,1)
+
+vector_20</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<pre class="r"><code>##b) Create three character vectors with length 3, 6 and 20, respectively. Each vector must be created using different functions in R.
+
+#1
+
+cvector_3 &lt;- c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
+
+cvector_3</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre class="r"><code>#2 
+
+cvector_6 &lt;- character(6)
+
+cvector_6</code></pre>
+<pre><code>## [1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
+<pre class="r"><code>#3
+
+cvector_20 &lt;- rep(c(&quot;hello&quot;,&quot;its me&quot;),10)
+
+cvector_20</code></pre>
+<pre><code>##  [1] &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot;
+##  [9] &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot;
+## [17] &quot;hello&quot;  &quot;its me&quot; &quot;hello&quot;  &quot;its me&quot;</code></pre>
+<pre class="r"><code>##c) Copy the following script to your R script and perform the following analysis:
+
+set.seed(1)
+x &lt;- rnorm(100)
+
+# Identify element IDs of x that are greater than 2.0
+
+x_over_2 &lt;- which(x &gt; 2.0)
+
+# Identify element values of x that are greater than 2.0
+
+x_over_2_2 &lt;- x[x &gt; 2.0]
+
+#### Matrix #####
+
+## a) Create a numeric matrix with 4 rows and 4 columns. Each column must contain identical elements.
+
+matrix &lt;- matrix(1:4, ncol = 4, nrow = 4)
+
+##b) Create a numeric matrix with 4 rows and 4 columns. Each row must contain identical elements.
+
+matrix_1 &lt;- matrix(1:4, ncol=4, nrow = 4, byrow = TRUE)
+
+##c) Create a character matrix with 4 rows and 4 columns. Each column must contain identical elements.
+
+matrix_2 &lt;- matrix(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;), nrow = 4, ncol = 4)
+
+##d) Create a character matrix with 4 rows and 4 columns. Each row must contain identical elements.
+
+matrix_3 &lt;- matrix(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;), nrow = 4, ncol = 4, byrow= TRUE)
+
+##e) Copy the following script to your R script and perform the following analysis:
+
+set.seed(1)
+x &lt;- matrix(rnorm(100), nrow = 10, ncol = 10)
+
+#Identify element IDs of x that are greater than 2.0 (specify row and column IDs)
+
+greater_than_2 &lt;- which(x &gt; 2.0, arr.ind = TRUE)
+
+#Identify element IDs of x that are greater than 2.0 (specify row and column IDs)
+
+values_greater_than_2 &lt;- x[x &gt; 2.0]
+
+mean_of_values_greater_than_2 &lt;- mean(values_greater_than_2)
+
+
+#### Data Frame ####
+
+#a) Create a data frame of 3 variables with 10 elements (name variables as x, y and z. x must be character while y and z must be numeric.
+
+
+data_frame &lt;- data.frame(x = rep(&quot;char&quot;, 10),y = 1:10, z = 11:20)
+
+#b) Check the data structure (higher-level) of x, y and z
+
+class(data_frame)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>x_class &lt;- class(data_frame$x)
+y_class &lt;- class(data_frame$y)
+z_class &lt;- class(data_frame$z)
+
+#c) Copy the following script to your R script and perform the following analysis:
+
+#Calculate the means of temperature and abundance for states VA and NC separately.
+
+set.seed(1)
+x &lt;- rnorm(100, mean = 10, sd = 3)
+y &lt;- rpois(100, lambda = 10)
+z &lt;- rep(c(&quot;VA&quot;, &quot;NC&quot;), 50)
+df0 &lt;- data.frame(temperature = x, abundance = y, state = z)
+
+
+mean_temperature_VA &lt;- mean(df0$temperature[df0$state == &quot;VA&quot;])
+mean_temperature_NC &lt;- mean(df0$temperature[df0$state == &quot;NC&quot;])
+
+mean_abundance_VA &lt;- mean(df0$abundance[df0$state == &quot;VA&quot;])
+mean_abundance_NC &lt;- mean(df0$abundance[df0$state == &quot;NC&quot;])
+
+
+
+mean_temperature_VA </code></pre>
+<pre><code>## [1] 10.58658</code></pre>
+<pre class="r"><code>mean_temperature_NC </code></pre>
+<pre><code>## [1] 10.06675</code></pre>
+<pre class="r"><code>mean_abundance_VA</code></pre>
+<pre><code>## [1] 9.5</code></pre>
+<pre class="r"><code>mean_abundance_NC</code></pre>
+<pre><code>## [1] 9.72</code></pre>
+<pre class="r"><code># Tidyverse ---------------------------------------------------------------
+
+library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.1     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.2     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>iris &lt;- as_tibble(iris)
+iris</code></pre>
+<pre><code>## # A tibble: 150 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># single match &quot;==&quot;
+filter(iris, Species == &quot;virginica&quot;)</code></pre>
+<pre><code>## # A tibble: 50 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species  
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;    
+##  1          6.3         3.3          6           2.5 virginica
+##  2          5.8         2.7          5.1         1.9 virginica
+##  3          7.1         3            5.9         2.1 virginica
+##  4          6.3         2.9          5.6         1.8 virginica
+##  5          6.5         3            5.8         2.2 virginica
+##  6          7.6         3            6.6         2.1 virginica
+##  7          4.9         2.5          4.5         1.7 virginica
+##  8          7.3         2.9          6.3         1.8 virginica
+##  9          6.7         2.5          5.8         1.8 virginica
+## 10          7.2         3.6          6.1         2.5 virginica
+## # i 40 more rows</code></pre>
+<pre class="r"><code># multiple match &quot;%in%&quot;
+filter(iris, Species %in% c(&quot;virginica&quot;, &quot;versicolor&quot;))</code></pre>
+<pre><code>## # A tibble: 100 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+##  1          7           3.2          4.7         1.4 versicolor
+##  2          6.4         3.2          4.5         1.5 versicolor
+##  3          6.9         3.1          4.9         1.5 versicolor
+##  4          5.5         2.3          4           1.3 versicolor
+##  5          6.5         2.8          4.6         1.5 versicolor
+##  6          5.7         2.8          4.5         1.3 versicolor
+##  7          6.3         3.3          4.7         1.6 versicolor
+##  8          4.9         2.4          3.3         1   versicolor
+##  9          6.6         2.9          4.6         1.3 versicolor
+## 10          5.2         2.7          3.9         1.4 versicolor
+## # i 90 more rows</code></pre>
+<pre class="r"><code># except &quot;!=&quot;
+filter(iris, Species != &quot;virginica&quot;)</code></pre>
+<pre><code>## # A tibble: 100 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # i 90 more rows</code></pre>
+<pre class="r"><code># except multiple &quot;!(x %in% c(&quot;a&quot;, &quot;b&quot;))
+filter(iris, !(Species %in% c(&quot;virginica&quot;, &quot;versicolor&quot;)))</code></pre>
+<pre><code>## # A tibble: 50 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # i 40 more rows</code></pre>
+<pre class="r"><code># greater than &quot;&gt;&quot;
+filter(iris, Sepal.Length &gt; 5)</code></pre>
+<pre><code>## # A tibble: 118 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          5.4         3.9          1.7         0.4 setosa 
+##  3          5.4         3.7          1.5         0.2 setosa 
+##  4          5.8         4            1.2         0.2 setosa 
+##  5          5.7         4.4          1.5         0.4 setosa 
+##  6          5.4         3.9          1.3         0.4 setosa 
+##  7          5.1         3.5          1.4         0.3 setosa 
+##  8          5.7         3.8          1.7         0.3 setosa 
+##  9          5.1         3.8          1.5         0.3 setosa 
+## 10          5.4         3.4          1.7         0.2 setosa 
+## # i 108 more rows</code></pre>
+<pre class="r"><code># equal &amp; greater than &quot;&gt;=&quot;
+filter(iris, Sepal.Length &gt;= 5)</code></pre>
+<pre><code>## # A tibble: 128 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          5           3.6          1.4         0.2 setosa 
+##  3          5.4         3.9          1.7         0.4 setosa 
+##  4          5           3.4          1.5         0.2 setosa 
+##  5          5.4         3.7          1.5         0.2 setosa 
+##  6          5.8         4            1.2         0.2 setosa 
+##  7          5.7         4.4          1.5         0.4 setosa 
+##  8          5.4         3.9          1.3         0.4 setosa 
+##  9          5.1         3.5          1.4         0.3 setosa 
+## 10          5.7         3.8          1.7         0.3 setosa 
+## # i 118 more rows</code></pre>
+<pre class="r"><code># less than &quot;&lt;&quot;
+filter(iris, Sepal.Length &lt; 5)</code></pre>
+<pre><code>## # A tibble: 22 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          4.9         3            1.4         0.2 setosa 
+##  2          4.7         3.2          1.3         0.2 setosa 
+##  3          4.6         3.1          1.5         0.2 setosa 
+##  4          4.6         3.4          1.4         0.3 setosa 
+##  5          4.4         2.9          1.4         0.2 setosa 
+##  6          4.9         3.1          1.5         0.1 setosa 
+##  7          4.8         3.4          1.6         0.2 setosa 
+##  8          4.8         3            1.4         0.1 setosa 
+##  9          4.3         3            1.1         0.1 setosa 
+## 10          4.6         3.6          1           0.2 setosa 
+## # i 12 more rows</code></pre>
+<pre class="r"><code># equal &amp; less than &quot;&lt;=&quot;
+filter(iris, Sepal.Length &lt;= 5)</code></pre>
+<pre><code>## # A tibble: 32 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          4.9         3            1.4         0.2 setosa 
+##  2          4.7         3.2          1.3         0.2 setosa 
+##  3          4.6         3.1          1.5         0.2 setosa 
+##  4          5           3.6          1.4         0.2 setosa 
+##  5          4.6         3.4          1.4         0.3 setosa 
+##  6          5           3.4          1.5         0.2 setosa 
+##  7          4.4         2.9          1.4         0.2 setosa 
+##  8          4.9         3.1          1.5         0.1 setosa 
+##  9          4.8         3.4          1.6         0.2 setosa 
+## 10          4.8         3            1.4         0.1 setosa 
+## # i 22 more rows</code></pre>
+<pre class="r"><code># Arrange -----------------------------------------------------------------
+
+# arrange in an ascending order
+arrange(iris, Sepal.Length)</code></pre>
+<pre><code>## # A tibble: 150 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          4.3         3            1.1         0.1 setosa 
+##  2          4.4         2.9          1.4         0.2 setosa 
+##  3          4.4         3            1.3         0.2 setosa 
+##  4          4.4         3.2          1.3         0.2 setosa 
+##  5          4.5         2.3          1.3         0.3 setosa 
+##  6          4.6         3.1          1.5         0.2 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          4.6         3.6          1           0.2 setosa 
+##  9          4.6         3.2          1.4         0.2 setosa 
+## 10          4.7         3.2          1.3         0.2 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># arrange in an descending order
+arrange(iris, desc(Sepal.Length))</code></pre>
+<pre><code>## # A tibble: 150 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species  
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;    
+##  1          7.9         3.8          6.4         2   virginica
+##  2          7.7         3.8          6.7         2.2 virginica
+##  3          7.7         2.6          6.9         2.3 virginica
+##  4          7.7         2.8          6.7         2   virginica
+##  5          7.7         3            6.1         2.3 virginica
+##  6          7.6         3            6.6         2.1 virginica
+##  7          7.4         2.8          6.1         1.9 virginica
+##  8          7.3         2.9          6.3         1.8 virginica
+##  9          7.2         3.6          6.1         2.5 virginica
+## 10          7.2         3.2          6           1.8 virginica
+## # i 140 more rows</code></pre>
+<pre class="r"><code># Select ------------------------------------------------------------------
+
+# select one column
+select(iris, Sepal.Length)</code></pre>
+<pre><code>## # A tibble: 150 x 1
+##    Sepal.Length
+##           &lt;dbl&gt;
+##  1          5.1
+##  2          4.9
+##  3          4.7
+##  4          4.6
+##  5          5  
+##  6          5.4
+##  7          4.6
+##  8          5  
+##  9          4.4
+## 10          4.9
+## # i 140 more rows</code></pre>
+<pre class="r"><code># select multiple columns
+select(iris, c(Sepal.Length, Sepal.Width))</code></pre>
+<pre><code>## # A tibble: 150 x 2
+##    Sepal.Length Sepal.Width
+##           &lt;dbl&gt;       &lt;dbl&gt;
+##  1          5.1         3.5
+##  2          4.9         3  
+##  3          4.7         3.2
+##  4          4.6         3.1
+##  5          5           3.6
+##  6          5.4         3.9
+##  7          4.6         3.4
+##  8          5           3.4
+##  9          4.4         2.9
+## 10          4.9         3.1
+## # i 140 more rows</code></pre>
+<pre class="r"><code># remove one column
+select(iris, -Sepal.Length)</code></pre>
+<pre><code>## # A tibble: 150 x 4
+##    Sepal.Width Petal.Length Petal.Width Species
+##          &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1         3.5          1.4         0.2 setosa 
+##  2         3            1.4         0.2 setosa 
+##  3         3.2          1.3         0.2 setosa 
+##  4         3.1          1.5         0.2 setosa 
+##  5         3.6          1.4         0.2 setosa 
+##  6         3.9          1.7         0.4 setosa 
+##  7         3.4          1.4         0.3 setosa 
+##  8         3.4          1.5         0.2 setosa 
+##  9         2.9          1.4         0.2 setosa 
+## 10         3.1          1.5         0.1 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># remove multiple columns
+select(iris, -c(Sepal.Length, Sepal.Width))</code></pre>
+<pre><code>## # A tibble: 150 x 3
+##    Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          1.4         0.2 setosa 
+##  2          1.4         0.2 setosa 
+##  3          1.3         0.2 setosa 
+##  4          1.5         0.2 setosa 
+##  5          1.4         0.2 setosa 
+##  6          1.7         0.4 setosa 
+##  7          1.4         0.3 setosa 
+##  8          1.5         0.2 setosa 
+##  9          1.4         0.2 setosa 
+## 10          1.5         0.1 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># select/remove multiple columns with a start rule
+# starts_with(&quot;x&quot;)
+select(iris, starts_with(&quot;Sepal&quot;))</code></pre>
+<pre><code>## # A tibble: 150 x 2
+##    Sepal.Length Sepal.Width
+##           &lt;dbl&gt;       &lt;dbl&gt;
+##  1          5.1         3.5
+##  2          4.9         3  
+##  3          4.7         3.2
+##  4          4.6         3.1
+##  5          5           3.6
+##  6          5.4         3.9
+##  7          4.6         3.4
+##  8          5           3.4
+##  9          4.4         2.9
+## 10          4.9         3.1
+## # i 140 more rows</code></pre>
+<pre class="r"><code>select(iris, -starts_with(&quot;Sepal&quot;))</code></pre>
+<pre><code>## # A tibble: 150 x 3
+##    Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          1.4         0.2 setosa 
+##  2          1.4         0.2 setosa 
+##  3          1.3         0.2 setosa 
+##  4          1.5         0.2 setosa 
+##  5          1.4         0.2 setosa 
+##  6          1.7         0.4 setosa 
+##  7          1.4         0.3 setosa 
+##  8          1.5         0.2 setosa 
+##  9          1.4         0.2 setosa 
+## 10          1.5         0.1 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># select/remove multiple columns with an end rule
+# ends_with(&quot;x&quot;)
+select(iris, ends_with(&quot;Width&quot;))</code></pre>
+<pre><code>## # A tibble: 150 x 2
+##    Sepal.Width Petal.Width
+##          &lt;dbl&gt;       &lt;dbl&gt;
+##  1         3.5         0.2
+##  2         3           0.2
+##  3         3.2         0.2
+##  4         3.1         0.2
+##  5         3.6         0.2
+##  6         3.9         0.4
+##  7         3.4         0.3
+##  8         3.4         0.2
+##  9         2.9         0.2
+## 10         3.1         0.1
+## # i 140 more rows</code></pre>
+<pre class="r"><code>select(iris, -ends_with(&quot;Width&quot;))</code></pre>
+<pre><code>## # A tibble: 150 x 3
+##    Sepal.Length Petal.Length Species
+##           &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1          1.4 setosa 
+##  2          4.9          1.4 setosa 
+##  3          4.7          1.3 setosa 
+##  4          4.6          1.5 setosa 
+##  5          5            1.4 setosa 
+##  6          5.4          1.7 setosa 
+##  7          4.6          1.4 setosa 
+##  8          5            1.5 setosa 
+##  9          4.4          1.4 setosa 
+## 10          4.9          1.5 setosa 
+## # i 140 more rows</code></pre>
+<pre class="r"><code># Mutate ------------------------------------------------------------------
+
+# add a new column
+x &lt;- 1:150
+mutate(iris, x = x)</code></pre>
+<pre><code>## # A tibble: 150 x 6
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species     x
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;
+##  1          5.1         3.5          1.4         0.2 setosa      1
+##  2          4.9         3            1.4         0.2 setosa      2
+##  3          4.7         3.2          1.3         0.2 setosa      3
+##  4          4.6         3.1          1.5         0.2 setosa      4
+##  5          5           3.6          1.4         0.2 setosa      5
+##  6          5.4         3.9          1.7         0.4 setosa      6
+##  7          4.6         3.4          1.4         0.3 setosa      7
+##  8          5           3.4          1.5         0.2 setosa      8
+##  9          4.4         2.9          1.4         0.2 setosa      9
+## 10          4.9         3.1          1.5         0.1 setosa     10
+## # i 140 more rows</code></pre>
+<pre class="r"><code>mutate(iris, SL2 = 2 * Sepal.Length)</code></pre>
+<pre><code>## # A tibble: 150 x 6
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species   SL2
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1          5.1         3.5          1.4         0.2 setosa   10.2
+##  2          4.9         3            1.4         0.2 setosa    9.8
+##  3          4.7         3.2          1.3         0.2 setosa    9.4
+##  4          4.6         3.1          1.5         0.2 setosa    9.2
+##  5          5           3.6          1.4         0.2 setosa   10  
+##  6          5.4         3.9          1.7         0.4 setosa   10.8
+##  7          4.6         3.4          1.4         0.3 setosa    9.2
+##  8          5           3.4          1.5         0.2 setosa   10  
+##  9          4.4         2.9          1.4         0.2 setosa    8.8
+## 10          4.9         3.1          1.5         0.1 setosa    9.8
+## # i 140 more rows</code></pre>
+<pre class="r"><code># Piping ------------------------------------------------------------------
+
+# the following codes produce the same data frame
+# apply functions separately
+df_vir &lt;- filter(iris, Species == &quot;virginica&quot;)
+df_vir_sl &lt;- select(df_vir, Sepal.Length)
+print(df_vir_sl)</code></pre>
+<pre><code>## # A tibble: 50 x 1
+##    Sepal.Length
+##           &lt;dbl&gt;
+##  1          6.3
+##  2          5.8
+##  3          7.1
+##  4          6.3
+##  5          6.5
+##  6          7.6
+##  7          4.9
+##  8          7.3
+##  9          6.7
+## 10          7.2
+## # i 40 more rows</code></pre>
+<pre class="r"><code># piping
+iris %&gt;% 
+  filter(Species == &quot;virginica&quot;) %&gt;% 
+  select(Sepal.Length)</code></pre>
+<pre><code>## # A tibble: 50 x 1
+##    Sepal.Length
+##           &lt;dbl&gt;
+##  1          6.3
+##  2          5.8
+##  3          7.1
+##  4          6.3
+##  5          6.5
+##  6          7.6
+##  7          4.9
+##  8          7.3
+##  9          6.7
+## 10          7.2
+## # i 40 more rows</code></pre>
+<pre class="r"><code># group operation ---------------------------------------------------------
+
+# grouping by &quot;Species&quot;, then take means &quot;Speal.Length&quot; for each species
+iris %&gt;% 
+  group_by(Species) %&gt;% 
+  summarize(mu_sl = mean(Sepal.Length))</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   Species    mu_sl
+##   &lt;fct&gt;      &lt;dbl&gt;
+## 1 setosa      5.01
+## 2 versicolor  5.94
+## 3 virginica   6.59</code></pre>
+<pre class="r"><code># grouping by &quot;Species&quot;, then take means &amp; SD &quot;Speal.Length&quot; for each species
+iris %&gt;% 
+  group_by(Species) %&gt;% 
+  summarize(mu_sl = mean(Sepal.Length),
+            sd_sl = sd(Sepal.Length))</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   Species    mu_sl sd_sl
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 setosa      5.01 0.352
+## 2 versicolor  5.94 0.516
+## 3 virginica   6.59 0.636</code></pre>
+<pre class="r"><code># grouping by &quot;Species&quot;, then take means &quot;Speal.Length&quot; for each species
+iris %&gt;% 
+  group_by(Species) %&gt;% 
+  mutate(mu_sl = mean(Sepal.Length)) %&gt;% 
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 150 x 6
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species mu_sl
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1          5.1         3.5          1.4         0.2 setosa   5.01
+##  2          4.9         3            1.4         0.2 setosa   5.01
+##  3          4.7         3.2          1.3         0.2 setosa   5.01
+##  4          4.6         3.1          1.5         0.2 setosa   5.01
+##  5          5           3.6          1.4         0.2 setosa   5.01
+##  6          5.4         3.9          1.7         0.4 setosa   5.01
+##  7          4.6         3.4          1.4         0.3 setosa   5.01
+##  8          5           3.4          1.5         0.2 setosa   5.01
+##  9          4.4         2.9          1.4         0.2 setosa   5.01
+## 10          4.9         3.1          1.5         0.1 setosa   5.01
+## # i 140 more rows</code></pre>
+<pre class="r"><code># Left join ---------------------------------------------------------------
+
+# matching by a single column
+## left join by &quot;Species&quot;: one to one
+df1 &lt;- tibble(Species = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),
+              x = c(1, 2, 3))
+
+df2 &lt;- tibble(Species = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),
+              y = c(4, 5, 6))
+
+left_join(x = df1,
+          y = df2,
+          by = &quot;Species&quot;)</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   Species     x     y
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 A           1     4
+## 2 B           2     5
+## 3 C           3     6</code></pre>
+<pre class="r"><code># Exercise tidyverse  --------------------------------------------------------------
+
+library(ggplot2movies)
+data(&#39;movies&#39;)
+library(tidyverse)
+
+
+#1a
+ 
+data &lt;- movies
+
+data1 &lt;- data  %&gt;% mutate(new_var_name = rating - mean(rating))
+
+#1b
+
+data2 &lt;- data %&gt;%  filter(year &gt;= 2000)
+
+#1c
+
+data3 &lt;- data %&gt;% select(title, year, budget, length, rating, votes)
+
+#1d
+
+data4 &lt;- data %&gt;%  rename(length_in_min = length)
+
+#### Tidyverse Exercise 2 ####
+
+data5 &lt;- data %&gt;% 
+  group_by(year) %&gt;% 
+  summarize(avg_budget = mean(budget,na.rm = TRUE)) 
+
+
+#### Tidvverse Exercise 3 ####
+
+
+dat = tibble(id = 1:10,
+             x = rnorm(10),
+             y = rnorm(10))
+
+dat1 &lt;- dat %&gt;%
+  pivot_longer(cols = c(x, y), names_to = &quot;variable&quot;, values_to = &quot;value&quot;)
+
+
+#### Tidyverse Exercise 4 ####
+
+#Now put several actions together in one set of piped operations.
+
+#Filter movies released after 1990
+#select the same variables as before but also the mpaa, Action, and Drama variables
+#group by mpaa and (your choice) Action or Drama
+#get the average rating
+# It should spit out something like the following:
+
+
+big_data &lt;- data %&gt;%  filter(year &gt; 1990) %&gt;% 
+  select(title, year, budget, length, rating, votes, mpaa, Action, Drama) %&gt;% 
+  group_by(mpaa, Drama) %&gt;% 
+  summarize(avg_rating = mean(rating,na.rm = TRUE)) </code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;mpaa&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>big_data</code></pre>
+<pre><code>## # A tibble: 10 x 3
+## # Groups:   mpaa [5]
+##    mpaa    Drama avg_rating
+##    &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
+##  1 &quot;&quot;          0       5.98
+##  2 &quot;&quot;          1       6.21
+##  3 &quot;NC-17&quot;     0       4.28
+##  4 &quot;NC-17&quot;     1       4.62
+##  5 &quot;PG&quot;        0       5.19
+##  6 &quot;PG&quot;        1       6.15
+##  7 &quot;PG-13&quot;     0       5.43
+##  8 &quot;PG-13&quot;     1       6.14
+##  9 &quot;R&quot;         0       4.86
+## 10 &quot;R&quot;         1       5.94</code></pre>
 
 
 
