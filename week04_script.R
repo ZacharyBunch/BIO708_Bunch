@@ -189,8 +189,8 @@ data <- tibble(z_rev = z_rev)
 ggplot(data, aes(x = z_rev)) +
   geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
   geom_vline(xintercept = arithmetic_mean, color = "red", linetype = "dashed", size = 1) +
-  geom_vline(xintercept = geometric_mean, color = "green", linetype = "dashed", size = 1) +
-  geom_vline(xintercept = median_value, color = "purple", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = geometric_mean, color = "black", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = median_value, color = "green", linetype = "dashed", size = 1) +
   labs(title = "Histogram of z_rev",
        x = "Value",
        y = "Frequency")
