@@ -188,9 +188,9 @@ data <- tibble(z_rev = z_rev)
 
 ggplot(data, aes(x = z_rev)) +
   geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
-  geom_vline(xintercept = arithmetic_mean, color = "red", linetype = "dashed", siz_reve = 1) +
-  geom_vline(xintercept = geometric_mean, color = "green", linetype = "dashed", siz_reve = 1) +
-  geom_vline(xintercept = median_value, color = "purple", linetype = "dashed", siz_reve = 1) +
+  geom_vline(xintercept = arithmetic_mean, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = geometric_mean, color = "green", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = median_value, color = "purple", linetype = "dashed", size = 1) +
   labs(title = "Histogram of z_rev",
        x = "Value",
        y = "Frequency")
@@ -206,3 +206,31 @@ summary_table <- data.frame(
 )
 
 summary_table
+
+
+
+#### 1.3.2 ####
+
+
+w <- rnorm(100, mean = 10, sd = 1)
+head(w) # show first 10 elements in w
+
+
+
+# Step 1: Convert the unit to milligrams and create a new vector m
+
+m <- w * 1000  # 1 gram = 1000 milligrams
+
+# Step 2: Calculate SD and MAD for w and m.
+
+sd_w <- sd(w)
+mad_w <- mad(w)
+sd_m <- sd(m)
+mad_m <- mad(m)
+
+# Step 3: Calculate CV and MAD/Median for w and m.
+
+cv_w <- sd_w / mean(w)
+mad_median_w <- mad(w) / median(w)
+cv_m <- sd_m / mean(m)
+mad_median_m <- mad(m) / median(m)
