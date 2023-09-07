@@ -136,9 +136,15 @@ print(mm_y)
 # Step 1: Create a vector z with length 1000
 z <- exp(rnorm(n = 1000, mean = 0, sd = 0.1))
 
+
+
 arithmetic_mean <- mean(z)
 geometric_mean <- exp(mean(log(z)))  # Geometric mean calculation
 median_value <- median(z)
+
+#Geometric mean sourced from this Wikipedia page: https://en.wikipedia.org/wiki/Geometric_mean
+
+knitr::include_graphics("GeoMean.png")
 
 
 # Step 2 + 3: Draw a histogram of z using ggplot2 
