@@ -129,3 +129,80 @@ print(mm_x)
 # for y
 mm_y <- mad_y / median(y)
 print(mm_y)
+
+
+# 1.3 Lab -----------------------------------------------------------------
+
+# Step 1: Create a vector z with length 1000
+z <- exp(rnorm(n = 1000, mean = 0, sd = 0.1))
+
+arithmetic_mean <- mean(z)
+geometric_mean <- exp(mean(log(z)))  # Geometric mean calculation
+median_value <- median(z)
+
+
+# Step 2 + 3: Draw a histogram of z using ggplot2 
+# Draw vertical lines of arithmetic mean, geometric mean, and median on the histogram with different colors using a function geom_vline() 
+library(tibble)
+library(ggplot2)
+
+data <- tibble(z = z)
+
+ggplot(data, aes(x = z)) +
+  geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
+  geom_vline(xintercept = arithmetic_mean, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = geometric_mean, color = "green", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = median_value, color = "purple", linetype = "dashed", size = 1) +
+  labs(title = "Histogram of z",
+       x = "Value",
+       y = "Frequency")
+
+
+# Step 4: Compare the values of the central tendency measures.
+# Just a table?
+
+
+summary_table <- data.frame(
+  Measure = c("Arithmetic Mean", "Geometric Mean", "Median"),
+  Value = c(arithmetic_mean, geometric_mean, median_value)
+)
+
+summary_table
+
+
+# Step 5: Create a new vector z_rev and repeat steps 1-4
+z_rev <- -z + max(z) + 0.1
+
+
+arithmetic_mean <- mean(z_rev)
+geometric_mean <- exp(mean(log(z_rev)))  # Geometric mean calculation
+median_value <- median(z_rev)
+
+#REPEAT
+# Step 2 + 3: Draw a histogram of z_rev using ggplot2 
+# Draw vertical lines of arithmetic mean, geometric mean, and median on the histogram with different colors using a function geom_vline() 
+library(tibble)
+library(ggplot2)
+
+data <- tibble(z_rev = z_rev)
+
+ggplot(data, aes(x = z_rev)) +
+  geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
+  geom_vline(xintercept = arithmetic_mean, color = "red", linetype = "dashed", siz_reve = 1) +
+  geom_vline(xintercept = geometric_mean, color = "green", linetype = "dashed", siz_reve = 1) +
+  geom_vline(xintercept = median_value, color = "purple", linetype = "dashed", siz_reve = 1) +
+  labs(title = "Histogram of z_rev",
+       x = "Value",
+       y = "Frequency")
+
+#REPEAT
+# Step 4: Compare the values of the central tendency measures.
+# Just a table?
+
+
+summary_table <- data.frame(
+  Measure = c("Arithmetic Mean", "Geometric Mean", "Median"),
+  Value = c(arithmetic_mean, geometric_mean, median_value)
+)
+
+summary_table
