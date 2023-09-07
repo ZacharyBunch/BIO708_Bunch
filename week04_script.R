@@ -219,8 +219,9 @@ head(w) # show first 10 elements in w
 
 # Step 1: Convert the unit to milligrams and create a new vector m
 
-m <- w * 1000  # 1 gram = 1000 milligrams
+m <- w * 1000  
 
+m
 # Step 2: Calculate SD and MAD for w and m.
 
 sd_w <- sd(w)
