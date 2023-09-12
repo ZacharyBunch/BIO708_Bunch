@@ -102,3 +102,57 @@ g_var <- df_sample %>%
 # layout vertically
 # possible only if "patchwork" is loaded
 g_mu / g_var
+
+#unbiased variance
+
+# for reproducibility
+set.seed(3)
+
+# redo simulations ----
+mu_i <- var_i <- var_ub_i <- NULL # create empty objects
+
+# repeat the work in {} from i = 1 to i = 100
+for (i in 1:100) {
+  
+  df_i <- df_h0 %>% 
+    sample_n(size = 10) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_i[i] <- mean(df_i$height)
+  
+  # save variance for sample set i
+  var_i[i] <- sum((df_i$height - mean(df_i$height))^2) / nrow(df_i) 
+  
+  var_ub_i[i] <- var(df_i$height)
+}
+
+
+# draw histograms ----
+df_sample <- tibble(mu_hat = mu_i,
+                    var_hat = var_i,
+                    var_ub_hat = var_ub_i)
+
+# histogram for mu
+g_mu <- df_sample %>% 
+  ggplot(aes(x = mu_hat)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+# histogram for variance
+# scale_x_continuous() adjusts scale in x-axis
+g_var <- df_sample %>% 
+  ggplot(aes(x = var_hat)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_i, var_ub_i)),
+                               max(c(var_i, var_ub_i))))
+
+# histogram for unbiased variance
+g_var_ub <- df_sample %>% 
+  ggplot(aes(x = var_ub_hat)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_i, var_ub_i)),
+                               max(c(var_i, var_ub_i))))
+
+g_mu / g_var / g_var_ub
