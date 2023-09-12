@@ -36,3 +36,69 @@ df_h2 <- tibble(plant_id = 11:20, # a vector from 11 to 20 by 1
          var_height = sum((height - mu_height)^2) / nrow(.))
 
 print(df_h2)
+
+#1000 plants
+# load csv data on R
+df_h0 <- read_csv("data_raw/data_plant_height.csv")
+
+# show the first 10 rows
+print(df_h0)
+
+# Summary statistics
+
+mu <- mean(df_h0$height)
+sigma2 <- sum((df_h0$height - mu)^2) / nrow(df_h0)
+
+print(mu)
+
+#subsample with sample_n()
+
+df_i <- df_h0 %>% 
+  sample_n(size = 10) # size specifies the number of rows to be selected randomly
+
+print(df_i)
+
+
+
+# for reproducibility
+set.seed(3)
+
+mu_i <- var_i <- NULL # create empty objects
+
+# repeat the work in {} from i = 1 to i = 100
+for (i in 1:100) {
+  
+  df_i <- df_h0 %>% 
+    sample_n(size = 10) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_i[i] <- mean(df_i$height)
+  
+  # save variance for sample set i
+  var_i[i] <- sum((df_i$height - mean(df_i$height))^2) / nrow(df_i) 
+  
+}
+
+print(mu_i)
+print(var_i)
+
+#install.packages("patchwork") # install only once
+library(patchwork)
+
+df_sample <- tibble(mu_hat = mu_i, var_hat = var_i)
+
+# histogram for mean
+g_mu <- df_sample %>% 
+  ggplot(aes(x = mu_hat)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+# histogram for variance
+g_var <- df_sample %>% 
+  ggplot(aes(x = var_hat)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2)
+
+# layout vertically
+# possible only if "patchwork" is loaded
+g_mu / g_var
