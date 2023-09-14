@@ -156,3 +156,173 @@ g_var_ub <- df_sample %>%
                                max(c(var_i, var_ub_i))))
 
 g_mu / g_var / g_var_ub
+
+
+# 2.3 Lab -----------------------------------------------------------------
+
+# We used 10 plants to estimate sample means and variances. Obtain 100 sub-datasets with 50 and 100 measures each, and draw histograms of sample means and unbiased variances (use var()).
+
+set.seed(3)
+
+mu_a <- var_a <- var_ub_a <- NULL # create empty objects
+
+for (x in 1:100) {
+  
+  df_a <- df_h0 %>% 
+    sample_n(size = 50) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_a[x] <- mean(df_a$height)
+  
+  # save variance for sample set i
+  var_a[x] <- sum((df_a$height - mean(df_a$height))^2) / nrow(df_a) 
+  
+  var_ub_a[x] <- var(df_a$height)
+}
+
+set.seed(3)
+
+mu_b <- var_b <- var_ub_b <- NULL # create empty objects
+
+for (x in 1:100) {
+  
+  df_b <- df_h0 %>% 
+    sample_n(size = 100) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_b[x] <- mean(df_b$height)
+  
+  # save variance for sample set i
+  var_b[x] <- sum((df_b$height - mean(df_b$height))^2) / nrow(df_b) 
+  
+  var_ub_b[x] <- var(df_b$height)
+}
+
+#First histrogram set
+
+df_sample_a <- tibble(mu_hat_a = mu_a,
+                    var_hat_a = var_a,
+                    var_ub_hat_a = var_ub_a)
+
+g_mu_a <- df_sample_a %>% 
+  ggplot(aes(x = mu_hat_a)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+
+# histogram for unbiased variance
+g_var_ub_a <- df_sample_a %>% 
+  ggplot(aes(x = var_ub_hat_a)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_a, var_ub_a)),
+                               max(c(var_a, var_ub_a))))
+g_mu_a / g_var_ub_a
+
+
+#Second Histogram set
+
+df_sample_b <- tibble(mu_hat_b = mu_b,
+                      var_hat_b = var_b,
+                      var_ub_hat_b = var_ub_b)
+
+g_mu_b <- df_sample_b %>% 
+  ggplot(aes(x = mu_hat_b)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+
+
+# histogram for unbiased variance
+g_var_ub_b <- df_sample_b %>% 
+  ggplot(aes(x = var_ub_hat_b)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_b, var_ub_b)),
+                               max(c(var_b, var_ub_b))))
+g_mu_b / g_var_ub_b
+
+# Sample means and unbiased variances are unbiased if samples are randomly selected. What happens if samples are non-random? Suppose the investigator was unable to find plants less than 10 cm in height - the following code excludes those less than 10 cm in height:
+df_h10 <- df_h0 %>% 
+  filter(height >= 10)
+
+set.seed(3)
+
+mu_a1 <- var_a1 <- var_ub_a1 <- NULL # create empty objects
+
+for (x in 1:100) {
+  
+  df_a1 <- df_h10 %>% 
+    sample_n(size = 50) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_a1[x] <- mean(df_a1$height)
+  
+  # save variance for sample set i
+  var_a1[x] <- sum((df_a1$height - mean(df_a1$height))^2) / nrow(df_a1) 
+  
+  var_ub_a1[x] <- var(df_a1$height)
+}
+
+set.seed(3)
+
+mu_b1 <- var_b1 <- var_ub_b1 <- NULL # create empty objects
+
+for (x in 1:100) {
+  
+  df_b1 <- df_h10 %>% 
+    sample_n(size = 100) # random samples of 10 individuals
+  
+  # save mean for sample set i
+  mu_b1[x] <- mean(df_b1$height)
+  
+  # save variance for sample set i
+  var_b1[x] <- sum((df_b1$height - mean(df_b1$height))^2) / nrow(df_b1) 
+  
+  var_ub_b1[x] <- var(df_b1$height)
+}
+
+#First histrogram set
+
+df_sample_a1 <- tibble(mu_hat_a1 = mu_a1,
+                      var_hat_a1 = var_a1,
+                      var_ub_hat_a1 = var_ub_a1)
+
+g_mu_a1 <- df_sample_a1 %>% 
+  ggplot(aes(x = mu_hat_a1)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+
+# histogram for unbiased variance
+g_var_ub_a1 <- df_sample_a1 %>% 
+  ggplot(aes(x = var_ub_hat_a1)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_a1, var_ub_a1)),
+                               max(c(var_a1, var_ub_a1))))
+g_mu_a1 / g_var_ub_a1
+
+
+#Second Histogram set
+
+df_sample_b1 <- tibble(mu_hat_b1 = mu_b1,
+                      var_hat_b1 = var_b1,
+                      var_ub_hat_b1 = var_ub_b1)
+
+g_mu_b1 <- df_sample_b1 %>% 
+  ggplot(aes(x = mu_hat_b1)) +
+  geom_histogram() +
+  geom_vline(xintercept = mu)
+
+
+
+# histogram for unbiased variance
+g_var_ub_b1 <- df_sample_b1 %>% 
+  ggplot(aes(x = var_ub_hat_b1)) +
+  geom_histogram() +
+  geom_vline(xintercept = sigma2) +
+  scale_x_continuous(limits= c(min(c(var_b1, var_ub_b1)),
+                               max(c(var_b1, var_ub_b1))))
+g_mu_b1 / g_var_ub_b1
+
