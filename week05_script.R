@@ -326,3 +326,4 @@ g_var_ub_b1 <- df_sample_b1 %>%
                                max(c(var_b1, var_ub_b1))))
 g_mu_b1 / g_var_ub_b1
 
+#We did it!
