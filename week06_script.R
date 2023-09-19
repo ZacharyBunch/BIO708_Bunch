@@ -123,3 +123,4 @@ df_count %>%
   geom_point(data = df_prob,
              aes(x = x,
                  y = freq))
+
