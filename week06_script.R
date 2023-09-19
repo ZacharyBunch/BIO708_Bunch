@@ -32,3 +32,46 @@ tibble(y = pd, x = x) %>% # data frame
   ggplot(aes(x = x, y = y)) +
   geom_line() + # draw lines
   labs(y = "Probability density") # re-label
+
+#Density to probability 
+# probability of x < 10
+p10 <- pnorm(q = 10, mean = mu, sd = sigma)
+print(p10)
+
+# probability of x < 20
+p20 <- pnorm(q = 20, mean = mu, sd = sigma)
+print(p20)
+
+
+# probability of 10 < x < 20
+p20_10 <- p20 - p10
+print(p20_10)
+
+x_min <- floor(min(df_h0$height)) # floor takes the integer part of the value
+x_max <- ceiling(max(df_h0$height)) # ceiling takes the next closest integer
+bin <- seq(x_min, x_max, by = 1) # each bin has 1cm
+
+p <- NULL # empty object for probability
+for (i in 1:(length(bin) - 1)) {
+  p[i] <- pnorm(bin[i+1], mean = mu, sd = sigma) - pnorm(bin[i], mean = mu, sd = sigma)
+}
+
+# data frame for probability
+# bin: last element [-length(bin)] was removed to match length
+# expected frequency in each bin is "prob times sample size"
+df_prob <- tibble(p, bin = bin[-length(bin)]) %>% 
+  mutate(freq = p * nrow(df_h0))
+
+#Expectation vs, observation
+
+df_h0 %>% 
+  ggplot(aes(x = height)) + 
+  geom_histogram(binwidth = 1) +
+  geom_point(data = df_prob,
+             aes(y = freq,
+                 x = bin),
+             color = "salmon") +
+  geom_line(data = df_prob,
+            aes(y = freq,
+                x = bin),
+            color = "salmon")
