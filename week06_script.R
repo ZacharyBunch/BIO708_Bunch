@@ -7,6 +7,10 @@
 
 library(tidyverse)
 
+# continous ---------------------------------------------------------------
+
+
+
 # load csv data on R
 df_h0 <- read_csv(here::here("data_raw/data_plant_height.csv"))
 
@@ -75,3 +79,47 @@ df_h0 %>%
             aes(y = freq,
                 x = bin),
             color = "salmon")
+# discrete ----------------------------------------------------------------
+
+df_count <- read_csv(here::here("data_raw/data_garden_count.csv"))
+print(df_count)
+
+df_count %>% 
+  ggplot(aes(x = count)) +
+  geom_histogram(binwidth = 0.5, # define binwidth
+                 center = 0) # relative position of each bin
+
+
+# vector of x values
+# create a vector of 0 to 10 with an interval one
+# must be integer of > 0
+x <- seq(0, 10, by = 1)
+
+# calculate probability mass
+lambda_hat <- mean(df_count$count)
+pm <- dpois(x, lambda = lambda_hat)
+
+# figure
+tibble(y = pm, x = x) %>% # data frame
+  ggplot(aes(x = x, y = y)) +
+  geom_line(linetype = "dashed") + # draw dashed lines
+  geom_point() + # draw points
+  labs(y = "Probability",
+       x = "Count") # re-label
+
+#expectation vs. observation
+
+df_prob <- tibble(x = x, y = pm) %>% 
+  mutate(freq = y * nrow(df_count)) # prob x sample size
+
+df_count %>% 
+  ggplot(aes(x = count)) +
+  geom_histogram(binwidth = 0.5,
+                 center = 0) +
+  geom_line(data = df_prob,
+            aes(x = x,
+                y = freq),
+            linetype = "dashed") +
+  geom_point(data = df_prob,
+             aes(x = x,
+                 y = freq))
