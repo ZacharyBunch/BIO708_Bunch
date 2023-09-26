@@ -1,11 +1,12 @@
 #' ---
 #' title: "Report week6"
 #' output: html_document
-#' date: "2023-9-19"
+#' date: "2023-9-21"
 #' author: Zachary Bunch
 #' ---
 
 library(tidyverse)
+library(ggplot2)
 
 # continous ---------------------------------------------------------------
 
@@ -93,7 +94,7 @@ df_count %>%
 # vector of x values
 # create a vector of 0 to 10 with an interval one
 # must be integer of > 0
-x <- seq(0, 10, by = 1)
+x <- seq(0, 100, by = 1)
 
 # calculate probability mass
 lambda_hat <- mean(df_count$count)
@@ -121,6 +122,80 @@ df_count %>%
                 y = freq),
             linetype = "dashed") +
   geom_point(data = df_prob,
+             aes(x = x,
+                 y = freq))
+
+
+
+# Lab 3.4 -----------------------------------------------------------------
+
+set.seed(123)
+n <- rnorm(50, mean = 10, sd = 12)
+
+n <- as.data.frame(n)
+
+n_x_min <- floor(min(n$n)) # floor takes the integer part of the value
+n_x_max <- ceiling(max(n$n)) # ceiling takes the next closest integer
+n_bin <- seq(n_x_min, n_x_max, by = 1) # each bin has 1cm
+
+mu <- mean(n$n)
+sigma <- sd(n$n)
+
+
+p1 <- NULL # empty object for probability
+for (i in 1:(length(n_bin) - 1)) {
+  p1[i] <- pnorm(n_bin[i+1], mean = mu, sd = sigma) - pnorm(n_bin[i], mean = mu, sd = sigma)
+}
+
+n_df_prob <- tibble(p1, bin = n_bin[-length(n_bin)]) %>% 
+  mutate(freq = p1 * nrow(n))
+
+n %>% 
+  ggplot(aes(x = n)) + 
+  geom_histogram(binwidth = 1) +
+  geom_point(data = n_df_prob,
+             aes(y = freq,
+                 x = bin),
+             color = "salmon") +
+  geom_line(data = n_df_prob,
+            aes(y = freq,
+                x = bin),
+            color = "salmon")
+
+# 3.4.2 -------------------------------------------------------------------
+
+set.seed(123)
+
+x <- seq(0, 15, by = 1)
+
+name <- rpois(1000, lambda = 5)
+name <- as.data.frame(name)
+
+lambda_hat <- mean(name$name)
+
+
+pm <- dpois(x, lambda = lambda_hat)
+
+
+tibble(y = pm, x = x) %>% # data frame
+  ggplot(aes(x = x, y = y)) +
+  geom_line(linetype = "dashed") + # draw dashed lines
+  geom_point() + # draw points
+  labs(y = "Probability",
+       x = "Count") # re-label
+
+name_prob <- tibble(x = x, y = pm) %>% 
+  mutate(freq = y * nrow(name)) # prob x sample size
+
+name %>% 
+  ggplot(aes(x = name)) +
+  geom_histogram(binwidth = 0.5,
+                 center = 0) +
+  geom_line(data = name_prob,
+            aes(x = x,
+                y = freq),
+            linetype = "dashed") +
+  geom_point(data = name_prob,
              aes(x = x,
                  y = freq))
 
