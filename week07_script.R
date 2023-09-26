@@ -104,3 +104,27 @@ tibble(x, y) %>%
              color = "salmon") + # t_value is the observed t_value
   labs(y = "Probability density",
        x = "t-statistic") 
+
+# calculate area under the curve from -infinity to t_value
+pr_below <- pt(q = t_value, df = sum(v_n) - 2)
+
+# calculate area under the curve from abs(t_value) to infinity
+pr_above <- 1 - pt(q = abs(t_value), df = sum(v_n) - 2)
+
+
+# p_value
+p_value <- pr_below + pr_above
+print(p_value)
+
+x <- df_fl %>%
+  filter(lake == "a") %>%  # subset lake a
+  pull(length)
+
+y <- df_fl %>%
+  filter(lake == "b") %>% # subset lake b
+  pull(length)
+
+t.test(x, y, var.equal = TRUE)
+
+t.test(x, y, var.equal = FALSE)
+
