@@ -128,3 +128,76 @@ t.test(x, y, var.equal = TRUE)
 
 t.test(x, y, var.equal = FALSE)
 
+
+
+# 4.4 Laboratory 
+
+xs <- rnorm(10,5,10)
+ys <- rnorm(12,5,10)
+x1 <- rnorm(10,5,100)
+y1 <- rnorm(12,5,100)
+
+
+t.test(xs, ys)
+t.test(x1,y1)
+
+
+# 4.4.2 
+
+a1 <- c(13.9, 14.9 ,13.4, 14.3, 11.8, 13.9, 14.5, 15.1, 13.3, 13.9)
+a2 <- c(17.4, 17.3, 20.1, 17.2, 18.4, 19.6, 16.8, 18.7, 17.8, 18.9)
+
+b1 <- c(10.9, 20.3, 9.6, 8.3, 14.5, 12.3, 14.5, 16.7, 9.3, 22.0)
+b2 <- c(26.9, 12.9, 11.1, 16.7, 20.0, 20.9, 16.6, 15.4, 16.2, 16.2)
+
+a1 <- as.data.frame(a1)
+a2 <- as.data.frame(a2)
+b1 <- as.data.frame(b1)
+b2 <- as.data.frame(b2)
+
+a1_long <- pivot_longer(a1,a1)
+a2_long <- pivot_longer(a2,a2)
+b1_long <- pivot_longer(b1,b1)
+b2_long <- pivot_longer(b2,b2)
+
+# Estimate sample means and SDs for each vector. To
+
+x <- tibble(group = c(a1_long$name, a2_long$name,b1_long$name, b2_long$name), value = c(a1_long$value, a2_long$value, b1_long$value, b2_long$value)) %>% 
+  group_by(group) %>% 
+  summarize(mean = mean(value), sd = sd(value))
+
+#Recreating for t.test
+
+x2 <- tibble(group = c(a1_long$name, a2_long$name,b1_long$name, b2_long$name), value = c(a1_long$value, a2_long$value, b1_long$value, b2_long$value))
+
+#Sectioned group into own variable
+
+a1_test <- x2 %>% group_by(group) %>%   
+  filter(group == c("a1"))
+
+a2_test <- x2 %>% group_by(group) %>%   
+  filter(group == c("a2"))
+
+b1_test <- x2 %>% group_by(group) %>%   
+  filter(group == c("b1"))
+
+b2_test <- x2 %>% group_by(group) %>%   
+  filter(group == c("b2"))
+
+#Running the t.tests
+
+t.test(a1_test$value, a2_test$value)
+
+t.test(b1_test$value, b2_test$value)
+
+
+#4.4.3: Challenge 
+
+t_a1_a2 <- ((x[1,2] - x[2,2]) / sqrt(((x[1,3]^2)/(length(a1_test$value)))+((x[2,3]^2)/(length(a2_test$value)))))
+
+t_a1_a2
+
+df <- (((x[1,3]^2)/(length(a1_test$value)))+((x[2,3]^2)/(length(a2_test$value))))^2 / ((((((x[1,3]^2)/(length(a1_test$value)))^2))/(length(a1_test$value)-1)) + (((((x[2,3]^2)/(length(a2_test$value)))^2))/(length(a2_test$value)-1)))
+
+df                                    
+                                      
