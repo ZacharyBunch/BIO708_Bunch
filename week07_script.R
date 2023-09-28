@@ -197,7 +197,14 @@ t_a1_a2 <- ((x[1,2] - x[2,2]) / sqrt(((x[1,3]^2)/(length(a1_test$value)))+((x[2,
 
 t_a1_a2
 
+t_a1_a2 <- as.numeric(t_a1_a2)
+
 df <- (((x[1,3]^2)/(length(a1_test$value)))+((x[2,3]^2)/(length(a2_test$value))))^2 / ((((((x[1,3]^2)/(length(a1_test$value)))^2))/(length(a1_test$value)-1)) + (((((x[2,3]^2)/(length(a2_test$value)))^2))/(length(a2_test$value)-1)))
 
 df                                    
-                                      
+
+df <- as.numeric(df)
+
+p_value <- (1-pt(abs(t_a1_a2), df = df)) * 2                                     
+
+p_value
