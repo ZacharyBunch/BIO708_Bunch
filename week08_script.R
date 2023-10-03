@@ -104,6 +104,16 @@ df_i <- df_anova %>%
 var_g <- ss_g / (3 - 1)
 var_w <- ss_w / (150 - 3)
 
+# get F value
+f_value <- var_g / var_w
 
-var_g / var_w
 
+# f distribution  ---------------------------------------------------------
+
+x <- seq(0,10, by = 0.1)
+y <- df(x, df1 = 3 - 1, df2 = 150 -3)
+
+tibble(x = x, y = y) %>% 
+  ggplot(aes(x=x, y = y)) +
+  geom_line() +
+  geom_vline(xintercept = f_value, color = "salmon", linetype = "dashed")
