@@ -117,3 +117,7 @@ tibble(x = x, y = y) %>%
   ggplot(aes(x=x, y = y)) +
   geom_line() +
   geom_vline(xintercept = f_value, color = "salmon", linetype = "dashed")
+
+p_value <- 1 - pf(f_value, df1 = 3 - 1, df2 = 150 -3)
+
+p_value
