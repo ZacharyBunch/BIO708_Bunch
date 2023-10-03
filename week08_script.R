@@ -97,3 +97,13 @@ df_i <- df_anova %>%
   mutate(mu_g = mean(length)) %>% # use mutate() to retain individual rows
   ungroup() %>% 
   mutate(dev_i = (length - mu_g)^2) # deviation from group mean for each fish
+
+
+# convert variability into sd
+
+var_g <- ss_g / (3 - 1)
+var_w <- ss_w / (150 - 3)
+
+
+var_g / var_w
+
