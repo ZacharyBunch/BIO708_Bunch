@@ -121,3 +121,51 @@ tibble(x = x, y = y) %>%
 p_value <- 1 - pf(f_value, df1 = 3 - 1, df2 = 150 -3)
 
 p_value
+
+
+# Lab 5.1
+
+#1
+
+PlantGrowth %>% 
+  ggplot(aes(x = group,
+             y = weight)) +
+  geom_violin(draw_quantiles = 0.5, # draw median horizontal line
+              alpha = 0.2) + # transparency
+  geom_jitter(alpha = 0.2) # transparency
+
+
+# group mean and sd
+plant_fl_mu <- PlantGrowth %>% 
+  group_by(group) %>% # group operation
+  summarize(mu_l = mean(weight), # summarize by mean()
+            sd_l = sd(weight)) # summarize with sd()
+
+PlantGrowth %>% 
+  ggplot(aes(x = group,
+             y = weight)) +
+  geom_jitter(width = 0.1, # scatter width
+              height = 0, # scatter height (no scatter with zero)
+              alpha = 0.25) + # transparency of data points
+  geom_segment(data = plant_fl_mu, # switch data frame
+               aes(x = group,
+                   xend = group,
+                   y = mu_l - sd_l,
+                   yend = mu_l + sd_l)) +
+  geom_point(data = plant_fl_mu, # switch data frame
+             aes(x = group,
+                 y = mu_l),
+             size = 3) +
+  labs(x = "Group", # x label
+       y = "Weight") # y label
+
+
+#2
+
+aov_plant <- aov(formula = weight ~ group, data = PlantGrowth)
+
+summary(aov_plant)
+
+#3 
+
+#P-Value, F-Value, degrees of freedom
