@@ -169,3 +169,24 @@ summary(aov_plant)
 #3 
 
 #P-Value, F-Value, degrees of freedom
+
+### Exercise 3 ####
+
+# Try different numbers of df1 and df2
+
+# 1) we have 5 groups with 30 measures
+
+#df1 = 5 - 1
+#df2 = 30 - 5
+# use pf() and f_value = 4.846
+
+1 - pf(4.846, df1 = 4, df2 = 25)
+
+# 2) we have 3 groups with 15 measures
+
+1 - pf(4.846, df1 = 2, df2 = 12)
+
+# 3) we have 4 groups with 20 measures
+
+1 - pf(4.846, df1 = 3, df2 = 16)
+
