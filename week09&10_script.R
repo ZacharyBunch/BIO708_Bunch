@@ -138,5 +138,3 @@ summary(versicolor_reg2)
 virginica_reg2 <- lm(Sepal.Width ~ Petal.Length + Petal.Width,
                     data = virginica)
 summary(virginica_reg2)
-
-

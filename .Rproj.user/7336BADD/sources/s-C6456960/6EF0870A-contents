@@ -31,3 +31,5 @@ mu_b <- df_fl %>%
   filter(lake == "b") %>% 
   pull(length) %>% 
   mean()
+
+
