@@ -109,6 +109,8 @@ df_pred <- tibble(Petal.Width = rep(seq(min(iris$Petal.Width),
                   Species = rep(unique(iris$Species),
                                 each = n_rep))
 
+
+
 # make prediction based on supplied values of explanatory variables
 y_pred <- predict(m_iris,
                   newdata = df_pred)
