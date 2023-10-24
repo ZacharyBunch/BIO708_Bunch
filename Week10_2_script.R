@@ -57,7 +57,7 @@ b <- df_fl %>%
 
 
 
-t.test(b,a, var.equal = true)
+t.test(b, a)
 
 #anova
 
@@ -95,3 +95,25 @@ m_iris <- lm(Petal.Length ~ Petal.Width + Species,
 
 summary(m_iris)
 
+
+
+# prediction --------------------------------------------------------------
+
+# create a data frame for prediction
+# variable names must be identical to the original dataframe for analysis
+n_rep <- 100
+df_pred <- tibble(Petal.Width = rep(seq(min(iris$Petal.Width),
+                                        max(iris$Petal.Width),
+                                        length = n_rep),
+                                    n_distinct(iris$Species)),
+                  Species = rep(unique(iris$Species),
+                                each = n_rep))
+
+# make prediction based on supplied values of explanatory variables
+y_pred <- predict(m_iris,
+                  newdata = df_pred)
+
+df_pred <- df_pred %>% 
+  mutate(y_pred = y_pred)
+
+print(df_pred)
