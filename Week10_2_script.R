@@ -119,3 +119,67 @@ df_pred <- df_pred %>%
   mutate(y_pred = y_pred)
 
 print(df_pred)
+
+
+iris %>% 
+  ggplot(aes(x = Petal.Width,
+             y = Petal.Length,
+             color = Species)) +
+  geom_point(alpha = 0.5) +
+  geom_line(data = df_pred,
+            aes(y = y_pred)) # redefine y values for lines; x and color are inherited from ggplot()
+
+
+# lab ---------------------------------------------------------------------
+
+# 7.3.1 Normality Assumption
+
+s_test <- shapiro.test(m_iris$residuals)
+
+s_test
+
+#7.3.2 model interpretation 
+
+y_intercept_setosa <- m_iris$coefficients[1]
+y_intercept_versicolor <- m_iris$coefficients[3]
+y_intercept_virginica <- m_iris$coefficients[4]
+ica
+
+
+x1 <- y_intercept_setosa + y_intercept_versicolor
+x2 <- y_intercept_setosa + y_intercept_virginica
+
+#7.3.3 Alternative model
+
+
+# develop iris model
+
+# create a data frame for prediction
+# variable names must be identical to the original dataframe for analysis
+# develop iris model
+m_iris1 <- lm(Petal.Length ~ Petal.Width,
+             data = iris)
+
+summary(m_iris1)
+
+n_rep <- 100
+df_pred <- tibble(Petal.Width = rep(seq(min(iris$Petal.Width),
+                                        max(iris$Petal.Width),
+                                        length = n_rep)))
+
+# make prediction based on supplied values of explanatory variables
+y_pred <- predict(m_iris1,
+                  newdata = df_pred)
+
+df_pred <- df_pred %>% 
+  mutate(y_pred = y_pred)
+
+print(df_pred)
+
+
+iris %>% 
+  ggplot(aes(x = Petal.Width,
+             y = Petal.Length)) +
+  geom_point(alpha = 0.5) +
+  geom_line(data = df_pred,
+            aes(y = y_pred)) # redefine y values for lines; x and color are inherited from ggplot()
