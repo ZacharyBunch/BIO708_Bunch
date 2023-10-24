@@ -163,9 +163,9 @@ m_iris1 <- lm(Petal.Length ~ Petal.Width,
 summary(m_iris1)
 
 n_rep <- 100
-df_pred <- tibble(Petal.Width = rep(seq(min(iris$Petal.Width),
+df_pred <- tibble(Petal.Width = seq(min(iris$Petal.Width),
                                         max(iris$Petal.Width),
-                                        length = n_rep)))
+                                        length = 100))
 
 # make prediction based on supplied values of explanatory variables
 y_pred <- predict(m_iris1,
