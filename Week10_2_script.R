@@ -143,7 +143,7 @@ s_test
 y_intercept_setosa <- m_iris$coefficients[1]
 y_intercept_versicolor <- m_iris$coefficients[3]
 y_intercept_virginica <- m_iris$coefficients[4]
-ica
+
 
 
 x1 <- y_intercept_setosa + y_intercept_versicolor
