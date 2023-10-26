@@ -60,5 +60,12 @@ z_value <- theta/se
 # glm prediction ----------------------------------------------------------
 
 df_pred <- tibble(nitrate = seq(min(df_count$nitrate), max(df_count$nitrate), length = 100)) %>% 
-   mutate(y_hat <- predict(m_pois, newdata= .) %>% exp(), y_norm = predict(m_normal, newdata = .))
+   mutate(y_pois = predict(m_pois, newdata= .) %>% exp(), y_norm = predict(m_normal, newdata = .))
+
+
+df_count %>% 
+  ggplot(aes(y = count, x = nitrate)) +
+  geom_point() +
+  geom_line(data = df_pred, aes(y = y_norm, x = nitrate)) +
+  geom_line(data = df_pred, aes(y = y_pois, x = nitrate))
 
