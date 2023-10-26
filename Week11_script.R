@@ -50,3 +50,15 @@ m_pois <- glm(count ~ nitrate,
 
 
 summary(m_pois)
+
+
+theta <- coef(m_pois)
+se <- sqrt(diag(vcov(m_pois)))
+z_value <- theta/se
+
+
+# glm prediction ----------------------------------------------------------
+
+df_pred <- tibble(nitrate = seq(min(df_count$nitrate), max(df_count$nitrate), length = 100)) %>% 
+   mutate(y_hat <- predict(m_pois, newdata= .) %>% exp(), y_norm = predict(m_normal, newdata = .))
+
