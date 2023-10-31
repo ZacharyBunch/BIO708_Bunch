@@ -69,3 +69,54 @@ df_count %>%
   geom_line(data = df_pred, aes(y = y_norm, x = nitrate)) +
   geom_line(data = df_pred, aes(y = y_pois, x = nitrate))
 
+
+# in class: binomial ----------------
+
+library(tidyverse)
+
+df_mussel <- read_csv(here::here("data_raw/data_mussel.csv")) %>% 
+  mutate(prop_fert = n_fertilized/n_examined)
+
+df_mussel %>%   
+  ggplot(aes(x=density, y= prop_fert)) +
+  geom_point()
+
+# see how logit function works
+# x: produce 100 numbers from -100 to 100 (assume logit scale)
+# y: convert with inverse-logit transformation (ordinary scale)
+df_test <- tibble(logit_p = seq(-10, 10, length = 100),
+                  x = exp(logit_p) / (1 + exp(logit_p)))
+
+df_test %>% 
+  ggplot(aes(x = logit_p,
+             y = x)) +
+  geom_point() +
+  geom_line() +
+  labs(y = "p",
+       x = "log(P / 1 - P)")
+
+
+## use binomial glm
+
+m_binom <- glm(cbind(n_fertilized, n_examined - n_fertilized) ~ density,
+               data = df_mussel,
+               family = "binomial")
+
+summary(m_binom)
+
+
+# Prediction 
+
+df_pred <- tibble(density = seq(min(df_mussel$density),
+                                max(df_mussel$density),
+                                length = 100)) %>% 
+  mutate(logit_y_hat = predict(m_binom, newdata= .), 
+         y_hat = exp(logit_y_hat) / (1 + exp(logit_y_hat)), 
+         y_hat0 = boot::inv.logit(logit_y_hat))
+
+## plot fertilization prop data vs. density
+## overlay the predicted values from the model
+
+df_mussel %>%  ggplot(aes(x = density, y = prop_fert)) +
+  geom_point() +
+  geom_line(data = df_pred, aes(y = y_hat))
