@@ -120,3 +120,53 @@ df_pred <- tibble(density = seq(min(df_mussel$density),
 df_mussel %>%  ggplot(aes(x = density, y = prop_fert)) +
   geom_point() +
   geom_line(data = df_pred, aes(y = y_hat))
+
+
+# LAB ---------------------------------------------------------------------
+
+library(tidyverse)
+data <- read_csv("data_raw/data_vpart.csv")
+
+
+model <- glm(n_sp ~ distance + cat_area + hull_area,
+              data = data,
+              family = "poisson")
+summary(model)
+
+## check mean vairance relationship
+
+mean(data$n_sp)
+var(data$n_sp)
+
+
+## small exercise 
+x1 <- rnorm(100, mean = 0, sd = 5)
+x2 <- rnorm(100, mean = 0, sd = 10)
+
+sd(x1);sd(x2)
+
+z1 <- x1 / sd(x1)
+z2 <- x2 / sd(x2)
+sd(z1); sd(z2)
+
+#Centerize 
+
+y1 <- rnorm(100, mean = 10, sd = 5)
+y2 <- rnorm(100, mean = 2, sd = 5)
+
+mean(y1); mean(y2)
+sd(y1); mean(y2)
+
+mean(scale(y1)); sd(scale(y1))
+mean(scale(y2)); sd(scale(y2))
+
+
+# lab pt. 2 ---------------------------------------------------------------
+
+
+model <- glm(n_sp ~ scale(distance) + scale(cat_area) + scale(hull_area),
+             data = data,
+             family = "poisson")
+
+plot(n_sp ~ distance, data)
+plot(n_sp ~ scale(distance), data)
